@@ -1,3 +1,5 @@
+import mediaManifest from "./empreendimentos-media.json";
+
 export type Empreendimento = {
   slug: string;
   nome: string;
@@ -14,26 +16,21 @@ export type Empreendimento = {
   galeria: string[];
 };
 
-const commonGalleryA = [
-  "/partners-renders/partners-desktop-overview-1.png",
-  "/partners-renders/partners-desktop-overview-2.png",
-  "/partners-renders/partners-desktop-gallery.png",
-  "/partners-renders/partners-mobile-gallery.jpeg",
-];
+type EmpreendimentoMedia = {
+  cover: string | null;
+  gallery: string[];
+};
 
-const commonGalleryB = [
-  "/partners-renders/partners-desktop-fractions.png",
-  "/partners-renders/partners-desktop-documents.png",
-  "/partners-renders/partners-mobile-fractions.jpeg",
-  "/partners-renders/partners-mobile-documents.jpeg",
-];
+const mediaBySlug = mediaManifest as Record<string, EmpreendimentoMedia>;
 
-const commonGalleryC = [
-  "/homeflix-hero-bg.png",
-  "/homeflix-home-mockup.png",
-  "/partners-renders/partners-mobile-unit.jpeg",
-  "/partners-renders/partners-mobile-cards.jpeg",
-];
+function resolveCover(slug: string): string {
+  return mediaBySlug[slug]?.cover || "/homeflix-hero-bg.png";
+}
+
+function resolveGallery(slug: string): string[] {
+  const gallery = mediaBySlug[slug]?.gallery || [];
+  return gallery.length > 0 ? gallery : [resolveCover(slug)];
+}
 
 export const empreendimentos: Empreendimento[] = [
   {
@@ -48,8 +45,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "17/04/2026",
     resumo: "Empreendimento com elevada tracao comercial e reserva ativa de fracoes em rede.",
     destaques: ["Distribuicao em rede validada", "Documentacao centralizada", "Rastreabilidade comercial"],
-    capa: "/partners-renders/partners-desktop-gallery.png",
-    galeria: commonGalleryA,
+    capa: resolveCover("golden-wolf"),
+    galeria: resolveGallery("golden-wolf"),
   },
   {
     slug: "bela-vista",
@@ -63,8 +60,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "28/01/2026",
     resumo: "Projeto residencial com equilibrio entre disponibilidade e reserva em fase ativa de distribuicao.",
     destaques: ["Visibilidade em extranet", "Conteudos por fracao", "Fluxo comercial auditavel"],
-    capa: "/partners-renders/partners-mobile-overview.jpeg",
-    galeria: commonGalleryA,
+    capa: resolveCover("bela-vista"),
+    galeria: resolveGallery("bela-vista"),
   },
   {
     slug: "auren-sud",
@@ -78,8 +75,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "17/04/2026",
     resumo: "Empreendimento com forte stock disponivel para aceleracao comercial com parceiros.",
     destaques: ["Inventario amplo", "Detalhe de unidade", "Partilha estruturada"],
-    capa: "/partners-renders/partners-desktop-overview-2.png",
-    galeria: commonGalleryC,
+    capa: resolveCover("auren-sud"),
+    galeria: resolveGallery("auren-sud"),
   },
   {
     slug: "villa-salgueiro",
@@ -93,8 +90,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "17/03/2026",
     resumo: "Projeto com grande margem de disponibilidade para novos parceiros e equipas comerciais.",
     destaques: ["Galeria rica de media", "Tabela de fracoes por bloco", "Comercializacao em tempo real"],
-    capa: "/partners-renders/partners-mobile-gallery.jpeg",
-    galeria: commonGalleryA,
+    capa: resolveCover("villa-salgueiro"),
+    galeria: resolveGallery("villa-salgueiro"),
   },
   {
     slug: "solar-das-oliveiras",
@@ -108,8 +105,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "17/04/2026",
     resumo: "Ativo residencial com operacao preparada para ampliacao de cobertura comercial.",
     destaques: ["Pipeline de unidade", "Processo validado", "Acesso profissional"],
-    capa: "/homeflix-hero-bg.png",
-    galeria: commonGalleryC,
+    capa: resolveCover("solar-das-oliveiras"),
+    galeria: resolveGallery("solar-das-oliveiras"),
   },
   {
     slug: "villa-galega",
@@ -123,8 +120,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "16/03/2026",
     resumo: "Empreendimento com 100% de fracoes disponiveis para distribuicao comercial imediata.",
     destaques: ["Stock integralmente disponivel", "Entrada rapida de parceiros", "Ativacao simples em rede"],
-    capa: "/partners-renders/partners-mobile-cards.jpeg",
-    galeria: commonGalleryA,
+    capa: resolveCover("villa-galega"),
+    galeria: resolveGallery("villa-galega"),
   },
   {
     slug: "nazareia-residences",
@@ -138,8 +135,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "28/01/2026",
     resumo: "Projeto com vista de fracoes, galeria e documentos com operacao comercial totalmente digital.",
     destaques: ["Gestao documental ativa", "Fracoes por estado", "Fluxo de consulta estruturado"],
-    capa: "/partners-renders/partners-desktop-fractions.png",
-    galeria: commonGalleryB,
+    capa: resolveCover("nazareia-residences"),
+    galeria: resolveGallery("nazareia-residences"),
   },
   {
     slug: "alto-da-colina-1a",
@@ -153,8 +150,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "16/03/2026",
     resumo: "Empreendimento com alta taxa de reserva e disponibilidade limitada para novas oportunidades.",
     destaques: ["Elevada procura", "Inventario controlado", "Partilha com rastreabilidade"],
-    capa: "/partners-renders/partners-desktop-overview-1.png",
-    galeria: commonGalleryA,
+    capa: resolveCover("alto-da-colina-1a"),
+    galeria: resolveGallery("alto-da-colina-1a"),
   },
   {
     slug: "alto-da-colina-3a",
@@ -168,8 +165,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "16/03/2026",
     resumo: "Ativo com mix de disponibilidade e reserva, pronto para distribuicao comercial ativa.",
     destaques: ["Grelha de fracoes completa", "Documentos por unidade", "Operacao em rede"],
-    capa: "/partners-renders/partners-desktop-overview-1.png",
-    galeria: commonGalleryA,
+    capa: resolveCover("alto-da-colina-3a"),
+    galeria: resolveGallery("alto-da-colina-3a"),
   },
   {
     slug: "vista-mocho",
@@ -183,8 +180,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "17/04/2026",
     resumo: "Projeto com boa disponibilidade para campanhas de captacao e fecho rapido.",
     destaques: ["Disponibilidade relevante", "Acesso imediato", "Modelo de partilha claro"],
-    capa: "/homeflix-home-mockup.png",
-    galeria: commonGalleryC,
+    capa: resolveCover("vista-mocho"),
+    galeria: resolveGallery("vista-mocho"),
   },
   {
     slug: "edificio-marginal",
@@ -198,8 +195,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "25/03/2026",
     resumo: "Empreendimento com disponibilidade reduzida e forte nivel de reserva em curso.",
     destaques: ["Baixo stock disponivel", "Gestao de oportunidade", "Pipeline protegido"],
-    capa: "/partners-renders/partners-desktop-overview-2.png",
-    galeria: commonGalleryB,
+    capa: resolveCover("edificio-marginal"),
+    galeria: resolveGallery("edificio-marginal"),
   },
   {
     slug: "azure",
@@ -213,8 +210,8 @@ export const empreendimentos: Empreendimento[] = [
     atualizadoEm: "24/03/2026",
     resumo: "Projeto em fase de disponibilidade residual com foco em conversao final das ultimas unidades.",
     destaques: ["Escassez de stock", "Alta taxa de reserva", "Seguimento comercial dedicado"],
-    capa: "/partners-renders/partners-desktop-overview-1.png",
-    galeria: commonGalleryB,
+    capa: resolveCover("azure"),
+    galeria: resolveGallery("azure"),
   },
 ];
 
