@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Building2, Files, KeyRound, Network, Shield, ShieldCheck, TrendingUp, Users } from "lucide-react";
 import { ComparisonBlock } from "@/components/ui/comparison-block";
+import { PartnersRendersShowcase } from "@/components/ui/partners-renders-showcase";
 import { SectionTitle } from "@/components/ui/section-title";
 import { buildPageMetadata } from "@/lib/site-metadata";
 
@@ -132,6 +133,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <PartnersRendersShowcase />
 
       <section className="section-wrap">
         <SectionTitle
