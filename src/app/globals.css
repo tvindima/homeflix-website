@@ -481,6 +481,24 @@ a {
   height: clamp(64px, 7.5vw, 88px);
 }
 
+.header-brand-divider {
+  width: 1px;
+  height: clamp(32px, 4vw, 46px);
+  background: linear-gradient(180deg, rgba(40, 146, 204, 0) 0%, rgba(40, 146, 204, 0.72) 48%, rgba(40, 146, 204, 0) 100%);
+}
+
+.header-imoveis-brand {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.header-imoveis-logo {
+  width: auto;
+  height: clamp(28px, 3.2vw, 38px);
+  opacity: 0.94;
+}
+
 .brand-ring {
   width: 64px;
   height: 64px;
@@ -514,31 +532,6 @@ a {
   color: #3ab4ea;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.header-powered {
-  display: grid;
-  gap: 0.1rem;
-  line-height: 1;
-}
-
-.header-powered span {
-  font-size: 0.68rem;
-  color: #6fb4d8;
-}
-
-.header-powered strong {
-  font-size: 1.4rem;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-  color: #18b6ff;
-}
-
-.header-powered small {
-  font-size: 0.55rem;
-  color: #4a88aa;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
 }
 
 .header-nav {
@@ -582,6 +575,30 @@ a {
   padding: 1rem 0 1.2rem;
   display: grid;
   gap: 0.8rem;
+}
+
+.empreendimento-watermark {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background-image: url("/imoveisplus-logo-watermark.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: min(70%, 420px) auto;
+  opacity: 0.14;
+  filter: drop-shadow(0 0 10px rgba(0, 8, 26, 0.72)) drop-shadow(0 0 2px rgba(0, 8, 26, 0.85));
+}
+
+.empreendimento-watermark-strong {
+  background-size: min(74%, 500px) auto;
+  opacity: 0.16;
+}
+
+.empreendimento-watermark-thumb {
+  background-size: 72% auto;
+  opacity: 0.2;
+  filter: drop-shadow(0 0 4px rgba(0, 8, 26, 0.9));
 }
 
 /* Homepage hero */
@@ -1006,8 +1023,8 @@ a {
     gap: 0.9rem;
   }
 
-  .header-powered {
-    display: none;
+  .header-brand-divider {
+    height: 30px;
   }
 
   .brand-ring {
@@ -1024,6 +1041,11 @@ a {
   .header-logo-image {
     width: auto;
     height: clamp(58px, 15vw, 74px);
+  }
+
+  .header-imoveis-logo {
+    width: auto;
+    height: clamp(20px, 5.7vw, 30px);
   }
 
   .home-hero-inner {

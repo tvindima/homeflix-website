@@ -28,6 +28,7 @@ export function ProjectGalleryCarousel({ projectName, images }: ProjectGalleryCa
           sizes="(max-width: 1024px) 100vw, 64vw"
           className="object-cover"
         />
+        <span className="empreendimento-watermark empreendimento-watermark-strong" aria-hidden />
 
         {gallery.length > 1 ? (
           <>
@@ -64,6 +65,7 @@ export function ProjectGalleryCarousel({ projectName, images }: ProjectGalleryCa
               aria-label={`Ver imagem ${index + 1}`}
             >
               <Image src={src} alt={`Miniatura ${index + 1}`} fill sizes="120px" className="object-cover" />
+              <span className="empreendimento-watermark empreendimento-watermark-thumb" aria-hidden />
             </button>
           ))}
         </div>

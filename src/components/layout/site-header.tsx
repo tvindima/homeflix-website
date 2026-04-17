@@ -35,10 +35,15 @@ export function SiteHeader() {
               className="header-logo-image"
             />
           </Link>
-          <div className="header-powered">
-            <span>Powered by:</span>
-            <strong>CRMPLUS</strong>
-            <small>ADVANCED CRM TECHNOLOGY</small>
+          <span className="header-brand-divider" aria-hidden />
+          <div className="header-imoveis-brand" aria-label="Imoveis Plus">
+            <Image
+              src="/imoveisplus-logo-watermark.png"
+              alt="Imoveis+ Leiria"
+              width={1946}
+              height={737}
+              className="header-imoveis-logo"
+            />
           </div>
         </div>
 

@@ -50,7 +50,8 @@ export default function EmpreendimentosPage() {
             <article key={project.slug} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70">
               <div className="relative aspect-[16/10]">
                 <Image src={project.capa} alt={project.nome} fill sizes="(max-width: 1280px) 100vw, 32vw" className="object-cover" />
-                <span className="absolute left-3 top-3 rounded-full border border-cyan-300/40 bg-slate-950/70 px-3 py-1 text-xs font-semibold text-cyan-200">
+                <span className="empreendimento-watermark" aria-hidden />
+                <span className="absolute left-3 top-3 z-20 rounded-full border border-cyan-300/40 bg-slate-950/70 px-3 py-1 text-xs font-semibold text-cyan-200">
                   {project.regiao}
                 </span>
               </div>
