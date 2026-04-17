@@ -111,7 +111,7 @@ declare global {
 }
 
 function getPool(): Pool | null {
-  const rawUrl = process.env.PLATFORM_DATABASE_URL;
+  const rawUrl = process.env.PLATFORM_DATABASE_URL?.trim();
   if (!rawUrl) return null;
 
   if (!global.__homeflixPlatformMetricsPool) {
@@ -131,7 +131,7 @@ export async function getHomePlatformMetrics(): Promise<HomePlatformMetrics> {
     return FALLBACK_METRICS;
   }
 
-  const tenantId = process.env.PLATFORM_TENANT_ID || null;
+  const tenantId = process.env.PLATFORM_TENANT_ID?.trim() || null;
   const params = tenantId ? [tenantId] : [];
   const tenantClause = tenantId ? " = $1" : " IS NOT NULL";
   const scopedPublicProjectsWhere = tenantId
