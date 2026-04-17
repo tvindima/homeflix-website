@@ -18,7 +18,8 @@
       "/empreendimentos/alto-da-colina-1a/galeria-11.webp",
       "/empreendimentos/alto-da-colina-1a/galeria-12.webp"
     ],
-    "gallery_count": 12
+    "gallery_count": 12,
+    "source": "partners_preview_with_watermark"
   },
   "alto-da-colina-3a": {
     "project_name": "ALTO DA COLINA 3A",
@@ -39,7 +40,8 @@
       "/empreendimentos/alto-da-colina-3a/galeria-11.webp",
       "/empreendimentos/alto-da-colina-3a/galeria-12.webp"
     ],
-    "gallery_count": 12
+    "gallery_count": 12,
+    "source": "partners_preview_with_watermark"
   },
   "auren-sud": {
     "project_name": "AUREN SUD",
@@ -65,7 +67,8 @@
       "/empreendimentos/auren-sud/galeria-16.webp",
       "/empreendimentos/auren-sud/galeria-17.webp"
     ],
-    "gallery_count": 17
+    "gallery_count": 17,
+    "source": "partners_preview_with_watermark"
   },
   "azure": {
     "project_name": "AZURE",
@@ -87,7 +90,8 @@
       "/empreendimentos/azure/galeria-12.webp",
       "/empreendimentos/azure/galeria-13.webp"
     ],
-    "gallery_count": 13
+    "gallery_count": 13,
+    "source": "partners_preview_with_watermark"
   },
   "bela-vista": {
     "project_name": "BELA VISTA",
@@ -113,7 +117,8 @@
       "/empreendimentos/bela-vista/galeria-16.webp",
       "/empreendimentos/bela-vista/galeria-17.webp"
     ],
-    "gallery_count": 17
+    "gallery_count": 17,
+    "source": "partners_preview_with_watermark"
   },
   "edificio-marginal": {
     "project_name": "EDIFICIO MARGINAL",
@@ -138,7 +143,8 @@
       "/empreendimentos/edificio-marginal/galeria-15.webp",
       "/empreendimentos/edificio-marginal/galeria-16.webp"
     ],
-    "gallery_count": 16
+    "gallery_count": 16,
+    "source": "partners_preview_with_watermark"
   },
   "golden-wolf": {
     "project_name": "GOLDEN WOLF",
@@ -169,7 +175,8 @@
       "/empreendimentos/golden-wolf/galeria-21.webp",
       "/empreendimentos/golden-wolf/galeria-22.webp"
     ],
-    "gallery_count": 22
+    "gallery_count": 22,
+    "source": "partners_preview_with_watermark"
   },
   "nazareia-residences": {
     "project_name": "NAZAREIA RESIDENCES",
@@ -198,7 +205,8 @@
       "/empreendimentos/nazareia-residences/galeria-19.webp",
       "/empreendimentos/nazareia-residences/galeria-20.webp"
     ],
-    "gallery_count": 20
+    "gallery_count": 20,
+    "source": "partners_preview_with_watermark"
   },
   "solar-das-oliveiras": {
     "project_name": "SOLAR DAS OLIVEIRAS",
@@ -232,7 +240,8 @@
       "/empreendimentos/solar-das-oliveiras/galeria-24.webp",
       "/empreendimentos/solar-das-oliveiras/galeria-25.webp"
     ],
-    "gallery_count": 25
+    "gallery_count": 25,
+    "source": "partners_preview_with_watermark"
   },
   "villa-galega": {
     "project_name": "VILLA GALEGA",
@@ -253,7 +262,8 @@
       "/empreendimentos/villa-galega/galeria-11.webp",
       "/empreendimentos/villa-galega/galeria-12.webp"
     ],
-    "gallery_count": 12
+    "gallery_count": 12,
+    "source": "partners_preview_with_watermark"
   },
   "villa-salgueiro": {
     "project_name": "VILLA SALGUEIRO",
@@ -287,7 +297,8 @@
       "/empreendimentos/villa-salgueiro/galeria-24.webp",
       "/empreendimentos/villa-salgueiro/galeria-25.webp"
     ],
-    "gallery_count": 25
+    "gallery_count": 25,
+    "source": "partners_preview_with_watermark"
   },
   "vista-mocho": {
     "project_name": "VISTA MOCHO",
@@ -321,6 +332,7 @@
       "/empreendimentos/vista-mocho/galeria-24.webp",
       "/empreendimentos/vista-mocho/galeria-25.webp"
     ],
-    "gallery_count": 25
+    "gallery_count": 25,
+    "source": "partners_preview_with_watermark"
   }
 }
