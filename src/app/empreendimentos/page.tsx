@@ -14,8 +14,20 @@ export const metadata: Metadata = buildPageMetadata({
 const totalFracoes = empreendimentos.reduce((sum, item) => sum + item.totalFracoes, 0);
 const fracoesDisponiveis = empreendimentos.reduce((sum, item) => sum + item.fracoesDisponiveis, 0);
 const fracoesReservadas = empreendimentos.reduce((sum, item) => sum + item.fracoesReservadas, 0);
+const localidades = [...new Set(empreendimentos.map((item) => item.localizacao))].sort((a, b) => a.localeCompare(b, "pt-PT"));
 
-export default function EmpreendimentosPage() {
+type EmpreendimentosPageProps = {
+  searchParams: Promise<{ localidade?: string | string[] }>;
+};
+
+export default async function EmpreendimentosPage({ searchParams }: EmpreendimentosPageProps) {
+  const query = await searchParams;
+  const localidadeQuery = Array.isArray(query.localidade) ? query.localidade[0] : query.localidade;
+  const localidadeSelecionada = localidadeQuery && localidades.includes(localidadeQuery) ? localidadeQuery : "";
+  const empreendimentosFiltrados = localidadeSelecionada
+    ? empreendimentos.filter((item) => item.localizacao === localidadeSelecionada)
+    : empreendimentos;
+
   return (
     <>
       <section className="hero-bg">
@@ -45,8 +57,47 @@ export default function EmpreendimentosPage() {
       </section>
 
       <section className="section-wrap">
+        <div className="mb-6 rounded-2xl border border-slate-800 bg-slate-950/75 p-4">
+          <form id="filtro-localidade" method="GET" className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div className="w-full max-w-sm space-y-2">
+              <label htmlFor="localidade" className="block text-xs font-semibold uppercase tracking-[0.08em] text-slate-300">
+                Filtrar por localidade
+              </label>
+              <select
+                id="localidade"
+                name="localidade"
+                defaultValue={localidadeSelecionada}
+                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none ring-cyan-400/50 transition focus:ring-2"
+              >
+                <option value="">Todas as localidades</option>
+                {localidades.map((localidade) => (
+                  <option key={localidade} value={localidade}>
+                    {localidade}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+              <button type="submit" className="btn-primary inline-flex items-center justify-center px-5 py-2">
+                Aplicar filtro
+              </button>
+              {localidadeSelecionada ? (
+                <Link href="/empreendimentos" className="btn-secondary inline-flex items-center justify-center px-5 py-2">
+                  Limpar filtro
+                </Link>
+              ) : null}
+            </div>
+          </form>
+
+          <p className="mt-3 text-sm text-slate-300">
+            A mostrar <strong className="text-cyan-300">{empreendimentosFiltrados.length}</strong> de{" "}
+            <strong className="text-cyan-300">{empreendimentos.length}</strong> empreendimentos.
+          </p>
+        </div>
+
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {empreendimentos.map((project) => (
+          {empreendimentosFiltrados.map((project) => (
             <article key={project.slug} className="overflow-hidden rounded-2xl border border-slate-800 bg-slate-950/70">
               <div className="relative aspect-[16/10]">
                 <Image src={project.capa} alt={project.nome} fill sizes="(max-width: 1280px) 100vw, 32vw" className="object-cover" />
@@ -97,6 +148,12 @@ export default function EmpreendimentosPage() {
             </article>
           ))}
         </div>
+
+        {empreendimentosFiltrados.length === 0 ? (
+          <div className="mt-5 rounded-2xl border border-slate-800 bg-slate-900/60 p-6 text-center text-slate-300">
+            Nao existem empreendimentos para a localidade selecionada.
+          </div>
+        ) : null}
       </section>
     </>
   );
