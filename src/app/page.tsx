@@ -6,6 +6,7 @@ import { ComparisonBlock } from "@/components/ui/comparison-block";
 import { PartnersRendersShowcase } from "@/components/ui/partners-renders-showcase";
 import { SectionTitle } from "@/components/ui/section-title";
 import { buildPageMetadata } from "@/lib/site-metadata";
+import { getHomePlatformMetrics } from "@/lib/server/platform-metrics";
 
 export const metadata: Metadata = buildPageMetadata({
   title: "A nova infraestrutura de partilha imobiliaria",
@@ -14,30 +15,39 @@ export const metadata: Metadata = buildPageMetadata({
   path: "/",
 });
 
-const featureStrip = [
-  {
-    icon: Network,
-    title: "28 Orgs Parceiras Ativas",
-    text: "69 parceiros registados, 61 ativos e 8 pendentes.",
-  },
-  {
-    icon: Files,
-    title: "487 Documentos Validos",
-    text: "319 de acesso partner e 168 de acesso publico.",
-  },
-  {
-    icon: Shield,
-    title: "22.547 Eventos Auditados",
-    text: "22.147 atividades registadas nos ultimos 30 dias.",
-  },
-  {
-    icon: TrendingUp,
-    title: "319 Fracoes Disponiveis",
-    text: "501 fracoes totais, com 182 ja reservadas.",
-  },
-];
+export const revalidate = 60;
 
-export default function HomePage() {
+function formatInt(value: number): string {
+  return new Intl.NumberFormat("pt-PT").format(value);
+}
+
+export default async function HomePage() {
+  const metrics = await getHomePlatformMetrics();
+  const dataSourceLabel = metrics.source === "database_live" ? "base de dados de producao (Railway)" : "snapshot de fallback";
+
+  const featureStrip = [
+    {
+      icon: Network,
+      title: `${formatInt(metrics.partners.activeOrgs)} Orgs Parceiras Ativas`,
+      text: `${formatInt(metrics.partners.total)} parceiros registados, ${formatInt(metrics.partners.active)} ativos e ${formatInt(metrics.partners.pending)} pendentes.`,
+    },
+    {
+      icon: Files,
+      title: `${formatInt(metrics.documents.total)} Documentos Validos`,
+      text: `${formatInt(metrics.documents.partner)} de acesso partner e ${formatInt(metrics.documents.public)} de acesso publico.`,
+    },
+    {
+      icon: Shield,
+      title: `${formatInt(metrics.activity.last30Days)} Eventos Auditados`,
+      text: `${formatInt(metrics.activity.last30Days)} atividades registadas nos ultimos 30 dias.`,
+    },
+    {
+      icon: TrendingUp,
+      title: `${formatInt(metrics.units.available)} Fracoes Disponiveis`,
+      text: `${formatInt(metrics.units.total)} fracoes totais, com ${formatInt(metrics.units.reserved)} ja reservadas.`,
+    },
+  ];
+
   return (
     <>
       <section className="home-hero">
@@ -52,12 +62,13 @@ export default function HomePage() {
             </h1>
 
             <p className="home-lead-copy">
-              A Homeflix opera com 12 empreendimentos publicos, 501 fracoes e 487 documentos validos em producao, com
-              rastreabilidade total e acesso controlado a parceiros imobiliarios.
+              A Homeflix opera com {formatInt(metrics.projects.public)} empreendimentos publicos, {formatInt(metrics.units.total)}{" "}
+              fracoes e {formatInt(metrics.documents.total)} documentos validos em producao, com rastreabilidade total e acesso
+              controlado a parceiros imobiliarios.
             </p>
 
             <p className="mt-3 text-sm text-sky-200/85">
-              Snapshot tecnico: 17/04/2026 19:50 (Europe/Lisbon) | Fonte: base de dados de producao (Railway), modo read-only.
+              Snapshot tecnico: {metrics.snapshotLabel} (Europe/Lisbon) | Fonte: {dataSourceLabel} | atualizacao automatica.
             </p>
 
             <div className="home-brand-lockup">
@@ -98,7 +109,7 @@ export default function HomePage() {
             <article className="metric-card metric-one">
               <Users size={32} strokeWidth={1.9} />
               <div>
-                <strong>61</strong>
+                <strong>{formatInt(metrics.partners.active)}</strong>
                 <span>Parceiros Ativos</span>
               </div>
             </article>
@@ -106,7 +117,7 @@ export default function HomePage() {
             <article className="metric-card metric-two">
               <Building2 size={30} strokeWidth={1.9} />
               <div>
-                <strong>12</strong>
+                <strong>{formatInt(metrics.projects.public)}</strong>
                 <span>Empreendimentos Publicos</span>
               </div>
             </article>
@@ -114,15 +125,15 @@ export default function HomePage() {
             <article className="metric-card metric-three">
               <KeyRound size={30} strokeWidth={1.9} />
               <div>
-                <strong>501</strong>
+                <strong>{formatInt(metrics.units.total)}</strong>
                 <span>Fracoes em Comercializacao</span>
               </div>
             </article>
 
             <article className="floating-note-card">
               <ShieldCheck size={30} strokeWidth={1.9} />
-              <h3>22.147</h3>
-              <p>Atividades nos ultimos 30 dias (auditoria real).</p>
+              <h3>{formatInt(metrics.projects.citiesWithAvailable)}</h3>
+              <p>Expansao nacional em cidades com produto disponivel para parceiros.</p>
             </article>
           </div>
         </div>
