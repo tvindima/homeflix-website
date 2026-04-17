@@ -83,6 +83,15 @@ export default function HomePage() {
                 QUERO SER PARCEIRO
               </Link>
             </div>
+
+            <div className="mt-3">
+              <Link
+                href="/empreendimentos"
+                className="btn-secondary inline-flex min-h-[3.25rem] items-center justify-center px-6 text-[0.95rem] font-semibold tracking-[0.01em]"
+              >
+                VER EMPREENDIMENTOS EM SISTEMA
+              </Link>
+            </div>
           </div>
 
           <div className="home-visual-col" aria-hidden>

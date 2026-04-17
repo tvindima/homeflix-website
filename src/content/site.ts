@@ -7,6 +7,7 @@ export const brand = {
 
 export const navItems = [
   { href: "/", label: "Home" },
+  { href: "/empreendimentos", label: "Empreendimentos" },
   { href: "/promotores", label: "Promotores" },
   { href: "/parceiros", label: "Parceiros" },
   { href: "/como-funciona", label: "Como Funciona" },
@@ -22,6 +23,7 @@ export const legalLinks = [
 
 export const publicRoutes = [
   "/",
+  "/empreendimentos",
   "/promotores",
   "/parceiros",
   "/como-funciona",

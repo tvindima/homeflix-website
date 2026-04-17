@@ -9,6 +9,7 @@ import { useModal } from "@/components/modals/modal-provider";
 
 const topNav = [
   { href: "/", label: "HOME" },
+  { href: "/empreendimentos", label: "EMPREENDIMENTOS" },
   { href: "/promotores", label: "PARA PROMOTORES" },
   { href: "/parceiros", label: "PARA PARCEIROS" },
   { href: "/como-funciona", label: "COMO FUNCIONA" },
